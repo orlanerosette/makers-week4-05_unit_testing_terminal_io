@@ -5,11 +5,23 @@ class InteractiveCalculator
   def run
     @terminal.puts "Hello. I will subtract two numbers."
     @terminal.puts "Please enter a number"
-    num_1 = @terminal.gets.chomp
+    num_1 = get_number
     @terminal.puts "Please enter another number"
-    num_2 = @terminal.gets.chomp
+    num_2 = get_number
     @terminal.puts "Here is your result:"
-    @terminal.puts "#{num_1.to_f} - #{num_2.to_f} = #{num_1.to_f - num_2.to_f}"
+    @terminal.puts format_sum(num_1, num_2)
+  end
+
+  private
+
+  def get_number
+    response = @terminal.gets.chomp
+    return response.to_i if response.to_i.to_s == response
+    fail "Error! Enter a number!"
+  end
+
+  def format_sum(num_1, num_2)
+    "#{num_1} - #{num_2} = #{num_1 - num_2}"
   end
 end
 
